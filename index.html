@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DCT | Digicloudtek - Cloud & Development Solutions</title>
-    <!-- Favicon - Using DCT logo -->
-    <link rel="icon" href="https://raw.githubusercontent.com/abhashducat93/adrbs2025/main/Logo.jpeg" type="image/jpeg">
+    <!-- Favicon - Using new DCT logo from GitHub -->
+    <link rel="icon" href="https://raw.githubusercontent.com/abhashducat93/digicloudtekrepo/main/dctlogo.png" type="image/png">
     <style>
         :root {
             --primary-color: #2c3e50;
@@ -92,7 +92,7 @@
         }
         
         .logo img {
-            height: 40px;
+            height: 45px; /* Slightly larger for the new logo */
             width: auto;
             border-radius: 4px;
             object-fit: contain;
@@ -726,8 +726,8 @@
     <header>
         <div class="container header-container">
             <div class="logo">
-                <!-- DCT Logo from GitHub -->
-                <img src="https://raw.githubusercontent.com/abhashducat93/adrbs2025/main/Logo.jpeg" alt="DCT Logo" id="logoImage">
+                <!-- NEW DCT Logo from GitHub repository -->
+                <img src="https://raw.githubusercontent.com/abhashducat93/digicloudtekrepo/main/dctlogo.png" alt="DCT Logo" id="logoImage">
                 <div class="logo-text">DCT<span>ek</span> | Digicloudtek</div>
             </div>
             <nav>
@@ -1193,33 +1193,35 @@
             }
         });
 
-        // Logo loading with GitHub fallback
+        // Logo loading with GitHub fallback for the new DCT logo
         window.addEventListener('load', function() {
             const logoImage = document.getElementById('logoImage');
             const favicon = document.querySelector('link[rel="icon"]');
             
-            // Check if logo loads
+            // Check if the new DCT logo loads correctly
             const checkLogo = new Image();
             checkLogo.onload = function() {
-                console.log('DCT logo loaded successfully');
+                console.log('New DCT logo loaded successfully from GitHub');
             };
             checkLogo.onerror = function() {
-                console.warn('Logo failed to load, using backup');
-                // Try alternative GitHub URL
-                logoImage.src = 'https://raw.githubusercontent.com/abhashducat93/adrbs2025/main/Logo.jpeg?raw=true';
-                favicon.href = 'https://raw.githubusercontent.com/abhashducat93/adrbs2025/main/Logo.jpeg?raw=true';
+                console.warn('New DCT logo failed to load, trying backup URL...');
+                // Try with raw.githubusercontent.com (sometimes works better)
+                logoImage.src = 'https://raw.githubusercontent.com/abhashducat93/digicloudtekrepo/main/dctlogo.png?raw=true';
+                favicon.href = 'https://raw.githubusercontent.com/abhashducat93/digicloudtekrepo/main/dctlogo.png?raw=true';
                 
-                // If still fails, use text fallback with DCT
+                // If still fails after 1 second, use text fallback with DCT
                 setTimeout(() => {
                     const img = new Image();
                     img.onerror = function() {
-                        logoImage.src = 'https://via.placeholder.com/40x40/3498db/ffffff?text=DCT';
+                        console.log('Using text fallback for logo');
+                        logoImage.src = 'https://via.placeholder.com/45x45/3498db/ffffff?text=DCT';
                         favicon.href = 'https://via.placeholder.com/32x32/3498db/ffffff?text=DCT';
                     };
                     img.src = logoImage.src;
                 }, 1000);
             };
-            checkLogo.src = 'https://raw.githubusercontent.com/abhashducat93/adrbs2025/main/Logo.jpeg';
+            // Use the correct raw GitHub URL for the logo
+            checkLogo.src = 'https://raw.githubusercontent.com/abhashducat93/digicloudtekrepo/main/dctlogo.png';
         });
     </script>
 </body>
