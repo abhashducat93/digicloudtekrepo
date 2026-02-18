@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DCT | Digicloudtek - Cloud & Development Solutions</title>
+    <!-- Favicon - Using DCT logo -->
+    <link rel="icon" href="https://raw.githubusercontent.com/abhashducat93/adrbs2025/main/Logo.jpeg" type="image/jpeg">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--secondary-color);
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .btn-accent {
+            background: var(--accent-color);
+        }
+        
+        .btn-accent:hover {
+            background: #c0392b;
+        }
+        
+        header {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            height: 40px;
+            width: auto;
+            border-radius: 4px;
+            object-fit: contain;
+        }
+        
+        .logo-text {
+            display: inline-block;
+            white-space: nowrap;
+        }
+        
+        .logo-text span {
+            color: var(--secondary-color);
+        }
+        
+        nav ul {
+            display: flex;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: #fff;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1467232004584-a241de8bcf5d');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .services {
+            padding: 80px 0;
+            background: #fff;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--dark-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: var(--secondary-color);
+            bottom: 0;
+            left: 25%;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: var(--light-color);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-card i {
+            font-size: 40px;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .about {
+            padding: 80px 0;
+            background: var(--light-color);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-text h2 {
+            font-size: 36px;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+        }
+        
+        .projects {
+            padding: 80px 0;
+            background: #fff;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .project-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover .project-overlay {
+            transform: translateY(0);
+        }
+        
+        .project-overlay h3 {
+            margin-bottom: 10px;
+        }
+        
+        .clients {
+            padding: 80px 0;
+            background: var(--light-color);
+        }
+        
+        .client-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .client-image {
+            text-align: center;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .client-image img {
+            max-width: 200px;
+            max-height: 100px;
+            object-fit: contain;
+        }
+        
+        .client-info h3 {
+            font-size: 24px;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+        
+        .client-info .client-tag {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .contact {
+            padding: 80px 0;
+            background: var(--light-color);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .map-container {
+            height: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .contact-info h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+        
+        .contact-info p {
+            margin-bottom: 30px;
+        }
+        
+        .contact-details div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .contact-details i {
+            margin-right: 15px;
+            color: var(--secondary-color);
+            font-size: 20px;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+        }
+
+        .form-message {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .form-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            display: block;
+        }
+
+        .form-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            display: block;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        footer {
+            background: var(--dark-color);
+            color: #fff;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-col h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary-color);
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #ddd;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .whatsapp-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 99;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-button:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .whatsapp-button i {
+            margin-top: 2px;
+        }
+
+        /* Success badge */
+        .setup-badge {
+            background: #28a745;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .setup-badge i {
+            margin-right: 5px;
+        }
+
+        /* Case Study Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 900px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: var(--accent-color);
+        }
+
+        .case-study-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .case-study-header h2 {
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+
+        .case-study-header .client-tag {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .case-study-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .case-study-image {
+            text-align: center;
+        }
+
+        .case-study-image img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .case-study-details h3 {
+            color: var(--dark-color);
+            margin: 20px 0 10px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 5px;
+        }
+
+        .case-study-details ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .case-study-details ul li {
+            margin-bottom: 8px;
+            list-style-type: disc;
+        }
+
+        .results-section {
+            grid-column: 1 / -1;
+            background: var(--light-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .result-item {
+            padding: 15px;
+        }
+
+        .result-item .number {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+            
+            .client-card {
+                grid-template-columns: 1fr;
+            }
+            
+            .client-image {
+                margin-bottom: 20px;
+            }
+
+            .whatsapp-button {
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                padding: 20px;
+            }
+
+            .case-study-content {
+                grid-template-columns: 1fr;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .map-container {
+                height: 300px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <!-- DCT Logo from GitHub -->
+                <img src="https://raw.githubusercontent.com/abhashducat93/adrbs2025/main/Logo.jpeg" alt="DCT Logo" id="logoImage">
+                <div class="logo-text">DCT<span>ek</span> | Digicloudtek</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#clients">Clients</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Innovative Cloud & Development Solutions</h1>
+            <p>Digicloudtek delivers cutting-edge cloud services, software development, and seamless deployment solutions to help your business thrive in the digital landscape.</p>
+            <a href="#contact" class="btn btn-accent">Get Started</a>
+            <a href="#services" class="btn">Our Services</a>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-cloud"></i>
+                    <h3>Cloud Solutions</h3>
+                    <p>Scalable cloud infrastructure, migration, and management services on AWS, Azure, and Google Cloud.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-code"></i>
+                    <h3>Custom Development</h3>
+                    <p>Tailored software solutions designed specifically for your business needs and requirements.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h3>Cloud Deployment</h3>
+                    <p>Seamless deployment of applications on leading cloud platforms for scalability and reliability.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Mobile Development</h3>
+                    <p>Cross-platform mobile applications that deliver exceptional user experiences.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-server"></i>
+                    <h3>DevOps Services</h3>
+                    <p>Continuous integration and deployment pipelines to streamline your development process.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Security Solutions</h3>
+                    <p>Comprehensive security measures to protect your applications and data in the cloud.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Digicloudtek</h2>
+                    <p>Digicloudtek (DCT) is a leading cloud and software development company with over 10 years of experience in delivering innovative solutions to businesses worldwide.</p>
+                    <p>Our team of expert cloud architects, developers, and engineers work collaboratively to create robust, scalable, and secure applications that drive business growth.</p>
+                    <p>We pride ourselves on our commitment to quality, timely delivery, and customer satisfaction. Our agile development approach ensures that we can adapt to your changing needs throughout the project lifecycle.</p>
+                    <a href="#contact" class="btn">Learn More</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c" alt="DCT Team">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Recent Projects</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71" alt="Cloud Migration Project">
+                    <div class="project-overlay">
+                        <h3>Enterprise Cloud Migration</h3>
+                        <p>Complete migration of legacy infrastructure to AWS for a financial services firm</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f" alt="Analytics Dashboard">
+                    <div class="project-overlay">
+                        <h3>Business Analytics Dashboard</h3>
+                        <p>Real-time data visualization and reporting tool for enterprises</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6" alt="Mobile Banking App">
+                    <div class="project-overlay">
+                        <h3>Mobile Banking App</h3>
+                        <p>Secure financial application with biometric authentication</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="clients" id="clients">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Valued Clients</h2>
+            </div>
+            
+            <div class="client-card">
+                <div class="client-image">
+                    <img src="https://hometwig.com/cloudkingtechnical/assets/images/logo.png" alt="CloudKing Logo">
+                </div>
+                <div class="client-info">
+                    <h3>CloudKing</h3>
+                    <span class="client-tag">Cloud Solutions Provider</span>
+                    <p>We partnered with CloudKing to develop and deploy their enterprise-grade cloud management platform. Our team implemented scalable microservices architecture with Kubernetes orchestration, reducing their deployment times by 60% and improving system reliability.</p>
+                    <p><strong>Technologies Used:</strong> AWS, Kubernetes, Docker, Node.js, React</p>
+                    <a href="#" class="btn" onclick="openCaseStudy('cloudking')">View Case Study</a>
+                </div>
+            </div>
+            
+            <div class="client-card">
+                <div class="client-image">
+                    <img src="https://campusbuddy.org/wp-content/uploads/2024/09/Main-Logo-CB-SVG-4.svg" alt="Campus Buddy Logo">
+                </div>
+                <div class="client-info">
+                    <h3>Campus Buddy</h3>
+                    <span class="client-tag">Education Technology</span>
+                    <p>For Campus Buddy, we created a comprehensive campus management system with mobile apps for students and faculty. The solution included attendance tracking, assignment submission, and real-time notifications. Our deployment strategy ensured zero downtime during academic sessions.</p>
+                    <p><strong>Technologies Used:</strong> Flutter, Firebase, Python Django, CI/CD Pipelines</p>
+                    <a href="#" class="btn" onclick="openCaseStudy('campusbuddy')">View Case Study</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CloudKing Case Study Modal -->
+    <div id="cloudking-case-study" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('cloudking-case-study')">&times;</span>
+            <div class="case-study-header">
+                <h2>CloudKing Cloud Management Platform</h2>
+                <span class="client-tag">Cloud Solutions Provider</span>
+                <p>Transforming enterprise cloud management with scalable microservices architecture</p>
+            </div>
+            
+            <div class="case-study-content">
+                <div class="case-study-image">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31" alt="CloudKing Platform">
+                </div>
+                
+                <div class="case-study-details">
+                    <h3>Project Overview</h3>
+                    <p>CloudKing approached Digicloudtek with the challenge of modernizing their legacy cloud management system that was struggling with scalability issues and high maintenance costs. The existing platform couldn't handle their growing customer base and lacked essential features for enterprise clients.</p>
+                    
+                    <h3>Our Solution</h3>
+                    <ul>
+                        <li>Designed and implemented a microservices architecture using Kubernetes for orchestration</li>
+                        <li>Developed a responsive front-end dashboard with React and Redux</li>
+                        <li>Created RESTful APIs with Node.js and Express for backend services</li>
+                        <li>Implemented CI/CD pipelines using Jenkins and Docker for seamless deployments</li>
+                        <li>Integrated monitoring with Prometheus and Grafana for real-time performance tracking</li>
+                        <li>Added multi-cloud support for AWS, Azure, and Google Cloud Platform</li>
+                    </ul>
+                    
+                    <h3>Technical Challenges</h3>
+                    <ul>
+                        <li>Migrating existing data without downtime during the transition period</li>
+                        <li>Implementing secure communication between microservices</li>
+                        <li>Optimizing performance for handling large-scale infrastructure monitoring</li>
+                        <li>Ensuring compatibility with various cloud provider APIs</li>
+                    </ul>
+                </div>
+                
+                <div class="results-section">
+                    <h3>Project Results</h3>
+                    <div class="results-grid">
+                        <div class="result-item">
+                            <div class="number">60%</div>
+                            <div>Reduction in deployment times</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="number">99.9%</div>
+                            <div>System uptime achieved</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="number">3x</div>
+                            <div>Increase in concurrent user capacity</div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 20px; text-align: center;">The new platform enabled CloudKing to onboard 40+ new enterprise clients within the first six months of launch, significantly increasing their market share in the cloud management sector.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Campus Buddy Case Study Modal -->
+    <div id="campusbuddy-case-study" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('campusbuddy-case-study')">&times;</span>
+            <div class="case-study-header">
+                <h2>Campus Buddy Education Platform</h2>
+                <span class="client-tag">Education Technology</span>
+                <p>Revolutionizing campus management with a comprehensive digital solution</p>
+            </div>
+            
+            <div class="case-study-content">
+                <div class="case-study-image">
+                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1" alt="Campus Buddy App">
+                </div>
+                
+                <div class="case-study-details">
+                    <h3>Project Overview</h3>
+                    <p>Campus Buddy needed a unified platform to manage all aspects of campus life for students, faculty, and administrators. Their existing systems were fragmented, leading to inefficiencies and poor user experience. Digicloudtek was tasked with creating a comprehensive solution that would integrate all campus functions into a single, user-friendly platform.</p>
+                    
+                    <h3>Our Solution</h3>
+                    <ul>
+                        <li>Developed cross-platform mobile apps using Flutter for consistent experience on iOS and Android</li>
+                        <li>Built a robust backend with Python Django and PostgreSQL for data management</li>
+                        <li>Implemented real-time notifications using Firebase Cloud Messaging</li>
+                        <li>Created a comprehensive admin dashboard for faculty and administrators</li>
+                        <li>Integrated with existing student information systems through custom APIs</li>
+                        <li>Developed secure authentication with biometric login options</li>
+                        <li>Implemented automated attendance tracking using QR codes</li>
+                    </ul>
+                    
+                    <h3>Technical Challenges</h3>
+                    <ul>
+                        <li>Synchronizing data across multiple institutions with different existing systems</li>
+                        <li>Ensuring platform accessibility for users with varying levels of technical proficiency</li>
+                        <li>Maintaining performance with large datasets of student records and course materials</li>
+                        <li>Implementing offline functionality for areas with poor internet connectivity</li>
+                    </ul>
+                </div>
+                
+                <div class="results-section">
+                    <h3>Project Results</h3>
+                    <div class="results-grid">
+                        <div class="result-item">
+                            <div class="number">95%</div>
+                            <div>Adoption rate among students</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="number">80%</div>
+                            <div>Reduction in administrative workload</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="number">50+</div>
+                            <div>Institutions onboarded in first year</div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 20px; text-align: center;">The Campus Buddy platform transformed campus operations for partner institutions, reducing paperwork by 75% and improving communication between students and faculty. The mobile apps achieved a 4.8/5 rating in app stores with over 100,000 downloads in the first six months.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Digicloudtek</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div>
+                        <div class="setup-badge">
+                            <i class="fas fa-check-circle"></i> ✓ Form Connected Successfully
+                        </div>
+                        <h3>Get in Touch</h3>
+                        <p>Have a project in mind or want to learn more about our cloud and development services? Reach out to us and our team will get back to you within 24 hours.</p>
+                        <div class="contact-details">
+                            <div>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>MC Complex, Captain Vijyant Thapar Marg, Naya Bans, Naya Bans Village, Sector 15, Noida, Uttar Pradesh 201301</span>
+                            </div>
+                            <div>
+                                <i class="fas fa-phone-alt"></i>
+                                <span>+91 9236586159</span>
+                            </div>
+                            <div>
+                                <i class="fas fa-envelope"></i>
+                                <span>info@digicloudtek.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <!-- Success/Error Message Container -->
+                        <div id="formMessage" class="form-message"></div>
+                        
+                        <!-- Form Fields -->
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        <input type="text" id="subject" name="subject" placeholder="Subject">
+                        <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                        
+                        <!-- Honeypot to prevent spam -->
+                        <input type="text" name="_gotcha" style="display: none;">
+                        
+                        <button type="submit" class="btn btn-accent" id="submitButton">
+                            <span id="buttonText">Send Message</span>
+                        </button>
+                    </form>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background: #e8f4fd; border-radius: 5px; font-size: 14px;">
+                        <i class="fas fa-info-circle" style="color: #3498db;"></i>
+                        <strong style="color: #2c3e50;">Form is live!</strong>
+                        <p style="color: #555; margin-top: 5px;">Your messages will be sent directly to <strong>abhashkumar199384@gmail.com</strong> via Formspree.</p>
+                    </div>
+                </div>
+                
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.715261899378!2d77.32726831508098!3d28.552808982451214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce44e80fc3e67%3A0x5d1c6a9dd5e9d7a7!2sMC%20Complex%2C%20Captain%20Vijyant%20Thapar%20Marg%2C%20Naya%20Bans%2C%20Naya%20Bans%20Village%2C%20Sector%2015%2C%20Noida%2C%20Uttar%20Pradesh%20201301!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Digicloudtek (DCT)</h3>
+                    <p>Innovative cloud and development solutions for your digital transformation journey. We deliver excellence in cloud services and software development.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Cloud Solutions</a></li>
+                        <li><a href="#">Custom Development</a></li>
+                        <li><a href="#">Mobile Apps</a></li>
+                        <li><a href="#">DevOps</a></li>
+                        <li><a href="#">Security Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#clients">Clients</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for the latest updates.</p>
+                    <form>
+                        <input type="email" placeholder="Your Email">
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Digicloudtek (DCT). All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://api.whatsapp.com/send/?phone=919559571277&text=Welcome+to+Digicloudtek&type=phone_number&app_absent=0" class="whatsapp-button" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Case Study Modal Functions
+        function openCaseStudy(studyId) {
+            event.preventDefault();
+            document.getElementById(studyId + '-case-study').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Form Submission with Formspree
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const formMessage = document.getElementById('formMessage');
+            const submitButton = document.getElementById('submitButton');
+            const buttonText = document.getElementById('buttonText');
+            
+            // Show loading state
+            submitButton.disabled = true;
+            buttonText.innerHTML = '<span class="loading-spinner"></span> Sending...';
+            formMessage.textContent = '';
+            formMessage.className = 'form-message';
+
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value || 'No Subject',
+                message: document.getElementById('message').value
+            };
+
+            try {
+                // Formspree endpoint
+                const formspreeEndpoint = 'https://formspree.io/f/mnjbznlg';
+
+                // Submit to Formspree
+                const response = await fetch(formspreeEndpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const responseData = await response.json();
+
+                if (response.ok) {
+                    // Success
+                    formMessage.textContent = 'Thank you! Your message has been sent successfully. We\'ll get back to you within 24 hours.';
+                    formMessage.className = 'form-message success';
+                    form.reset();
+                } else {
+                    throw new Error(responseData.error || 'Form submission failed');
+                }
+            } catch (error) {
+                console.error('Submission error:', error);
+                formMessage.innerHTML = `
+                    <strong>Error Sending Message</strong><br>
+                    Please email us directly at <strong>info@digicloudtek.com</strong><br>
+                    Or call us at <strong>+91 9236586159</strong>
+                `;
+                formMessage.className = 'form-message error';
+            } finally {
+                submitButton.disabled = false;
+                buttonText.textContent = 'Send Message';
+            }
+        });
+
+        // Logo loading with GitHub fallback
+        window.addEventListener('load', function() {
+            const logoImage = document.getElementById('logoImage');
+            const favicon = document.querySelector('link[rel="icon"]');
+            
+            // Check if logo loads
+            const checkLogo = new Image();
+            checkLogo.onload = function() {
+                console.log('DCT logo loaded successfully');
+            };
+            checkLogo.onerror = function() {
+                console.warn('Logo failed to load, using backup');
+                // Try alternative GitHub URL
+                logoImage.src = 'https://raw.githubusercontent.com/abhashducat93/adrbs2025/main/Logo.jpeg?raw=true';
+                favicon.href = 'https://raw.githubusercontent.com/abhashducat93/adrbs2025/main/Logo.jpeg?raw=true';
+                
+                // If still fails, use text fallback with DCT
+                setTimeout(() => {
+                    const img = new Image();
+                    img.onerror = function() {
+                        logoImage.src = 'https://via.placeholder.com/40x40/3498db/ffffff?text=DCT';
+                        favicon.href = 'https://via.placeholder.com/32x32/3498db/ffffff?text=DCT';
+                    };
+                    img.src = logoImage.src;
+                }, 1000);
+            };
+            checkLogo.src = 'https://raw.githubusercontent.com/abhashducat93/adrbs2025/main/Logo.jpeg';
+        });
+    </script>
+</body>
+</html>
